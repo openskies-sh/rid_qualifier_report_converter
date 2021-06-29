@@ -9,9 +9,9 @@ import arrow
 import argparse
 
 if __name__ == "__main__":    
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Process RID Qualifier report json')
     parser.add_argument('-f','--file', dest='file',
-                    help='sum the integers (default: find the max)')
+                    help='A path to the report.json that you have genreated')
     args = parser.parse_args()
     cur_dir = pathlib.Path(__file__).parent.absolute()
     os.chdir(cur_dir)
