@@ -165,17 +165,30 @@ if __name__ == "__main__":
                    th(cls="col").add('Summary')
                     
                 with issues_table.add(tbody()):
-                    
-                    for idx, issue in enumerate(findings['issues']):    
+                    if findings['issues']:
+                        
+                        for idx, issue in enumerate(findings['issues']):    
+                            l = tr()
+                            with l:
+                                with td():
+                                    p(cls='text-muted').add((idx+1))
+                                td().add(issue['queries'][0]['response']['code'])
+                                td().add(issue['severity'])
+                                td().add(issue['test_code'])
+                                td().add(issue['subject'])
+                                td().add(issue['summary'])
+                    else:
                         l = tr()
                         with l:
                             with td():
-                                p(cls='text-muted').add((idx+1))
-                            td().add(issue['queries'][0]['response']['code'])
-                            td().add(issue['severity'])
-                            td().add(issue['test_code'])
-                            td().add(issue['subject'])
-                            td().add(issue['summary'])
+                                p(cls='text-muted').add("No Issues found in report.json")
+                        
+                            td().add()
+                            td().add()
+                            td().add()
+                            td().add()
+                            td().add()
+                        
 
                 with footer(cls="pt-3 mt-4 text-muted border-top"):            
                     p('Report generated on: ' + formatted_now)
